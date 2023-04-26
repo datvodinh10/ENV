@@ -105,6 +105,8 @@ def getAgentState(env,draw_pile,discard_pile):
         for i in range(4):
             state[82+i] = env[62:67][int(nope_turn[i])]
         state[86] = env[62:67][int(env[73])] #lose or not
+        for i in range(4):
+            state[87+i] = np.where(env[0:56]==env[58+i])[0].shape[0]
 
     elif env[67]==3 and env[72]==3: #choose / take card turn, action favor
         state[0:12] = getAllNumCard(env,env[74])
@@ -118,6 +120,8 @@ def getAgentState(env,draw_pile,discard_pile):
         for i in range(4):
             state[82+i] = env[62:67][int(nope_turn[i])]
         state[86] = env[62:67][int(env[74])] #lose or not
+        for i in range(4):
+            state[87+i] = np.where(env[0:56]==env[58+i])[0].shape[0]
     else:
         state[0:12] = getAllNumCard(env,env[57])
         state[12:25] = discard_pile #discard pile
